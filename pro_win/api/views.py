@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from .serializers import *
-from .models import *
+from .serializers import AddProjectSerializer
+from .models import AddProject
 from rest_framework import generics
 from .permissions import IsAdmin
 # Create your views here.
 
 class AddProjectList(generics.ListCreateAPIView):
-    queryset = JvCollab.objects.all()
-    serializer_class = JvCollabSerializer
+    queryset = AddProject.objects.all()
+    serializer_class = AddProjectSerializer
 
 class AddProjectRetrieve(generics.RetrieveUpdateDestroyAPIView):
-    queryset = JvCollab.objects.all()
-    serializer_class = JvCollabSerializer
+    queryset = AddProject.objects.all()
+    serializer_class = AddProjectSerializer
     permission_classes = [IsAdmin]
