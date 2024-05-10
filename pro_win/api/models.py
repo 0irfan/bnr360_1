@@ -2,7 +2,7 @@ from django.db import models
 from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES_1, SECTION_CHOICES_2)
 from django.core.validators import RegexValidator
 
-class JvCollab(models.Model):
+class AddProject(models.Model):
 
     #===================== No Of Opening===================.
 
