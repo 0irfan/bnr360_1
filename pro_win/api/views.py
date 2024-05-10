@@ -5,11 +5,11 @@ from rest_framework import generics
 from .permissions import IsAdmin
 # Create your views here.
 
-class JvCollabList(generics.ListCreateAPIView):
+class AddProjectList(generics.ListCreateAPIView):
     queryset = JvCollab.objects.all()
     serializer_class = JvCollabSerializer
 
-class JvCollabRetrieve(generics.RetrieveUpdateDestroyAPIView):
+class AddProjectRetrieve(generics.RetrieveUpdateDestroyAPIView):
     queryset = JvCollab.objects.all()
     serializer_class = JvCollabSerializer
     permission_classes = [IsAdmin]
