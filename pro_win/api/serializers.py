@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import *
 
 
-class JvCollabSerializer(serializers.ModelSerializer):
+class AddProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = JvCollab
+        model = AddProject
         field = '__all__'
