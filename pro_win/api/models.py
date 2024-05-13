@@ -1,13 +1,13 @@
 from django.db import models
-from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES_1, SECTION_CHOICES_2)
-from django.core.validators import RegexValidator
+from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES_1, SECTION_CHOICES_2, CHOICE_CLEARANCE_VERIFIED, CANDIDATE_EMPLOYMENT_CHOICE)
+# from django.core.validators import RegexValidator
 
-class JvCollab(models.Model):
+class AddProject(models.Model):
 
     #===================== No Of Opening===================.
 
     id = models.UUIDField(null= False)
-    job_title = models.CharField(max_length= 255, null= False)
+    position_title = models.CharField(max_length= 255, null= False)
     security_requirement = models.CharField(max_length= 255)
     education = models.CharField(max_length= 255)
     language_requirement = models.CharField(max_length= 255)
@@ -31,16 +31,45 @@ class JvCollab(models.Model):
 
     #=================  Validator For miscellanous   ================.
 
-    alpha_numeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
-    miscellanouse = models.CharField(max_length= 255, choices= SECTION_CHOICES, default='N/A',validators=[alpha_numeric])
+    # alpha_numeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
+    miscellanouse = models.CharField(max_length= 255, choices= SECTION_CHOICES, default='N/A')
 
     
     
-
-
-
     class Meta:
-        db_table = 'jv_collab_edit'
+        db_table = 'project_edit'
+
+
+class ProjectUpdate(models.Model):
+
+    #========================= Information Section ==================.
+    
+    resource_name = models.CharField(max_length= 255, null= False)
+    hourly_bill_rate = models.DecimalField(decimal_places= 2, null= False)
+    hourly_pay_rate =  models.DecimalField(decimal_places= 2, null= False)
+    security_clearance_level = models.CharField(max_length= 255)
+    security_clearance_expiry = models.DateField()
+    security_clearance_verified = models.CharField(max_length= 50, choices=CHOICE_CLEARANCE_VERIFIED, null= False)
+    security_file_number = models.CharField(max_length= 50)
+    date_of_birth = models.DateField()
+    candidate_reference_verification = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
+    education_verification = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
+    candidate_employment =  models.CharField(max_length= 50, choices= CANDIDATE_EMPLOYMENT_CHOICE, null= False)
+    candidate_meets = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
+    #========= How this field work? ============.
+    candidate_rated_requirement = models.IntegerField(null= False)
+    candidate_language_requirement = models.CharField(max_length= 50, null= False)
+
+    #======================== File sections ==============.
+    
+    # Prepared Resume fields?
+    # Exclusively agreement fields?
+    # NDA fields?
+    # Education fields?
+    # Candidate reference fields?
+
+
+    
 
 
 

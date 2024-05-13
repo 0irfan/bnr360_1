@@ -26,3 +26,17 @@ SECTION_CHOICES_2 = [
                         ('READY TO SUBMIT','READY TO SUBMIT'),
                         ('SUBMITTED','SUBMITTED'),
                     ]
+
+CHOICE_CLEARANCE_VERIFIED = [
+    ('YES','YES'),
+    ('NO','NO'),
+    ('N/A','N/A',)
+]
+
+CANDIDATE_EMPLOYMENT_CHOICE = [
+    ('INDEPENDENT','INDEPENDENT'),
+    ('CONTRACTOR','CONTRACTOR'),
+    ('TERM EMPLOYEE','TERM EMPLOYEE'),
+    ('EMPLOYEE','EMPLOYEE'),
+
+]
