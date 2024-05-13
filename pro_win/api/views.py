@@ -25,4 +25,3 @@ class UpdateList(generics.ListCreateAPIView):
 class UpdateDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProjectUpdate.objects.all()
     serializer_class = UpdateSerializer
-    
