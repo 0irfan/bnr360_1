@@ -11,12 +11,12 @@ class AddProject(models.Model):
 
     #===================== Job Information section ======.
 
-    Job = models.ForeignKey('job', on_delete= models.CASCADE)
+    Job = models.ForeignKey('job', on_delete= models.CASCADE,null=False)
 
 
     #===================== No Of Opening===================.
 
-    id = models.UUIDField(null= False)
+    project_id = models.UUIDField(null= False)
     position_title = models.CharField(max_length= 255, null= False)
     security_requirement = models.CharField(max_length= 255)
     education = models.CharField(max_length= 255)
