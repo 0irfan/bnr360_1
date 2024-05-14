@@ -19,7 +19,7 @@ class FetchSerializer(serializers.ModelSerializer):
 
 # ======= Serialzer for project update ===========.
 class UpdateSerializer(serializers.ModelSerializer):
-    fetch_fields = FetchSerializer(many= True)
+    position_heading = FetchSerializer(many= True) # fetchiing position_title and id..
     class Meta:
         model = ProjectUpdate
         fields = '__all__'

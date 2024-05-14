@@ -37,8 +37,9 @@ class AddProject(models.Model):
     
     
     class Meta:
-        db_table = 'project_edit'
-
+        db_table = 'add_project'
+        verbose_name = 'add project'
+        verbose_name_plural = 'add projects'
 
 class ProjectUpdate(models.Model):
 
@@ -67,16 +68,41 @@ class ProjectUpdate(models.Model):
     # NDA fields?
     # Education fields?
     # Candidate reference fields?
+    class Meta:
+        db_table = 'project_update'
+        verbose_name = 'project update'
+        verbose_name_plural = 'project updates'
 
-
+# ================== Project Dashboard ===============.
+class ProjectDashboard(models.Model):
     
+    #===================== Top Section =================.
+    
+    project_id = models.UUIDField(null= False) # is we need to extract id from addproject class.
+    project_name = models.CharField(max_length= 255, null= False)
+    
+    #==================== Lower Top =====================.
 
+    technical_readliness = models.CharField(max_length= 255)
+    financial_readliness = models.CharField(max_length= 255)
+    security_readliness = models.CharField(max_length= 255)
+    language_verification = models.CharField(max_length= 255)
+    corporate_reference_readliness = models.CharField(max_length= 255)
+    education = models.CharField(max_length= 255)
 
+    #==================== Center Right ====================.
 
+    technical_evaluation_check = models.CharField(max_length= 255)
+    financial_evaluation_check = models.CharField(max_length= 255)
+    security_evaluation_check = models.CharField(max_length= 255)
+    education_evaluation_check = models.CharField(max_length= 255)
+    corporate_evaluation_check = models.CharField(max_length= 255)
+    candidate_evaluation_check = models.CharField(max_length= 255)
+    miscelaneous_check = models.CharField(max_length= 255)
 
+    #==================== Center Bottom ====================.
 
-
-
+    # this section will fetch information from project information update
 
 
 
