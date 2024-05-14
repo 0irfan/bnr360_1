@@ -5,8 +5,14 @@ from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES
 class AddProject(models.Model):
 
     #===================== Project section ============.
+    
     project_name = models.CharField(max_length=75, null= False)
     project_description = models.CharField(max_length= 500, null= False)
+
+    #===================== Job Information section ======.
+
+    Job = models.ForeignKey('job', on_delete= models.CASCADE)
+
 
     #===================== No Of Opening===================.
 
