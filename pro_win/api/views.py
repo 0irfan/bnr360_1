@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import (AddProjectSerializer, UpdateSerializer)
+from .serializers import (AddProjectSerializer, UpdateInformationSerializer, DashboardSerializer)
 from .models import (AddProject, ProjectUpdate)
 from rest_framework import generics
 from .permissions import IsAdmin
@@ -13,15 +13,19 @@ class AddProjectList(generics.ListCreateAPIView):
 class AddProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = AddProject.objects.all()
     serializer_class = AddProjectSerializer
-    # How can we customize IsAdmin permission..
-    permission_classes = [IsAdmin]
 
 
 class UpdateList(generics.ListCreateAPIView):
     queryset = ProjectUpdate.objects.all()
-    serializer_class = UpdateSerializer
+    serializer_class = UpdateInformationSerializer
 
-
-class UpdateDetail(generics.RetrieveUpdateDestroyAPIView):
+class RetrieveUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProjectUpdate.objects.all()
-    serializer_class = UpdateSerializer
+    serializer_class = UpdateInformationSerializer
+
+class DashboardRetrieve(generics.RetrieveUpdateAPIView):
+    queryset = AddProject.objects.all()
+    serializer_class = DashboardSerializer
+
+
+

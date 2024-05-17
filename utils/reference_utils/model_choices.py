@@ -40,3 +40,9 @@ CANDIDATE_EMPLOYMENT_CHOICE = [
     ('EMPLOYEE','EMPLOYEE'),
 
 ]
+MANAGER_CHOICE = [
+                    ('N/A','NOT ALLOWED'),
+                    ('NOT STARTED','NOT STARTED'),
+                    ('SUBMITTED','SUBMITTED'),
+                    ('NOT-SUBMITTED','NOT-SUBMITTED'),
+]

@@ -1,13 +1,14 @@
 from django.db import models
-from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES_1, SECTION_CHOICES_2, CHOICE_CLEARANCE_VERIFIED, CANDIDATE_EMPLOYMENT_CHOICE)
+from utils.reference_utils.model_choices import (SECTION_CHOICES,SECTION_CHOICES_1, SECTION_CHOICES_2, CHOICE_CLEARANCE_VERIFIED, CANDIDATE_EMPLOYMENT_CHOICE, MANAGER_CHOICE)
 # from django.core.validators import RegexValidator
 
 class AddProject(models.Model):
 
     #===================== Project section ============.
     
+    project_id = models.UUIDField(null= False)
     project_name = models.CharField(max_length=75, null= False)
-    project_description = models.CharField(max_length= 500, null= False)
+    project_description = models.CharField(max_length= 500, null= False,blank= False)
 
     #===================== Job Information section ======.
 
@@ -16,7 +17,6 @@ class AddProject(models.Model):
 
     #===================== No Of Opening===================.
 
-    project_id = models.UUIDField(null= False)
     position_title = models.CharField(max_length= 255, null= False)
     security_requirement = models.CharField(max_length= 255)
     education = models.CharField(max_length= 255)
@@ -55,9 +55,9 @@ class ProjectUpdate(models.Model):
 
     #========================= Information Section ==================.
     
-    resource_name = models.CharField(max_length= 255, null= False)
-    hourly_bill_rate = models.DecimalField(decimal_places= 2, null= False)
-    hourly_pay_rate =  models.DecimalField(decimal_places= 2, null= False)
+    applicant_name = models.CharField(max_length= 255, null= False, blank= False)
+    hourly_bill_rate = models.DecimalField(decimal_places= 2, null= False, blank= False)
+    hourly_pay_rate =  models.DecimalField(decimal_places= 2, null= False, blank= False)
     security_clearance_level = models.CharField(max_length= 255)
     security_clearance_expiry = models.DateField()
     security_clearance_verified = models.CharField(max_length= 50, choices=CHOICE_CLEARANCE_VERIFIED, null= False)
@@ -66,55 +66,48 @@ class ProjectUpdate(models.Model):
     candidate_reference_verification = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
     education_verification = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
     candidate_employment =  models.CharField(max_length= 50, choices= CANDIDATE_EMPLOYMENT_CHOICE, null= False)
-    candidate_meets = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
+    resource_met_requirement = models.CharField(max_length= 50, choices= CHOICE_CLEARANCE_VERIFIED, null= False)
     #========= How this field work? ============.
-    candidate_rated_requirement = models.IntegerField(null= False)
+    resource_rated_requirement = models.IntegerField(null= False)
     candidate_language_requirement = models.CharField(max_length= 50, null= False)
 
-    #======================== File sections ==============.
+
     
-    # Prepared Resume fields?
-    # Exclusively agreement fields?
-    # NDA fields?
-    # Education fields?
-    # Candidate reference fields?
+
     class Meta:
         db_table = 'project_update'
-        verbose_name = 'project update'
-        verbose_name_plural = 'project updates'
+        verbose_name = 'project_update'
+        verbose_name_plural = 'project_updates'
 
-# ================== Project Dashboard ===============.
-class ProjectDashboard(models.Model):
+
+
+
+#=========== Project Manager ===========.
+class ProjectManager(models.Model):
+    technical_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    financial_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    security_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    language_verification = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    corporate_reference_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    education = models.CharField(max_length= 20, choices= MANAGER_CHOICE)
     
-    #===================== Top Section =================.
+    # ============== Additional information section ==============.
+    technical_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    financial_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    educational_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    security_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    corporate_reference_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    candidate_reference_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+    miscellaneous_check =  models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+
+#======================== Files Model ==============.
+class Files(models.Model):
     
-    project_id = models.UUIDField(null= False) # is we need to extract id from addproject class.
-    project_name = models.CharField(max_length= 255, null= False)
-    
-    #==================== Lower Top =====================.
-
-    technical_readliness = models.CharField(max_length= 255)
-    financial_readliness = models.CharField(max_length= 255)
-    security_readliness = models.CharField(max_length= 255)
-    language_verification = models.CharField(max_length= 255)
-    corporate_reference_readliness = models.CharField(max_length= 255)
-    education = models.CharField(max_length= 255)
-
-    #==================== Center Right ====================.
-
-    technical_evaluation_check = models.CharField(max_length= 255)
-    financial_evaluation_check = models.CharField(max_length= 255)
-    security_evaluation_check = models.CharField(max_length= 255)
-    education_evaluation_check = models.CharField(max_length= 255)
-    corporate_evaluation_check = models.CharField(max_length= 255)
-    candidate_evaluation_check = models.CharField(max_length= 255)
-    miscelaneous_check = models.CharField(max_length= 255)
-
-    #==================== Center Bottom ====================.
-
-    # this section will fetch information from project information update
-
-
+    prepared_resume = models.FileField(upload_to= 'media/')
+    exclusively_agreement = models.FileField(upload_to= 'media/')
+    NDA = models.FileField(upload_to='media')
+    education_file = models.FileField(upload_to= 'media/')
+    candidate_reference = models.FileField(upload_to='media/')
 
 
 
