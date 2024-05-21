@@ -103,12 +103,6 @@ class ProjectManager(models.Model):
 #======================== Files Model ==============.
 class Files(models.Model):
     
-    prepared_resume = models.FileField(upload_to= 'media/')
-    exclusively_agreement = models.FileField(upload_to= 'media/')
-    NDA = models.FileField(upload_to='media')
-    education_file = models.FileField(upload_to= 'media/')
-    candidate_reference = models.FileField(upload_to='media/')
-
-
-
-
+    financial = models.FileField(null = False, blank= False)
+    # we need to get other fields from add Project and job tracking?
+    # if yes then how we can get this field from those model although we didn't add those field in models?
