@@ -16,7 +16,7 @@ class AddProject(models.Model):
 
 
     #===================== No Of Opening===================.
-
+    no_of_opening = models.IntegerField(null= False, blank= False)
     position_title = models.CharField(max_length= 255, null= False)
     security_requirement = models.CharField(max_length= 255)
     education = models.CharField(max_length= 255)
@@ -48,8 +48,8 @@ class AddProject(models.Model):
     
     class Meta:
         db_table = 'add_project'
-        verbose_name = 'add project'
-        verbose_name_plural = 'add projects'
+        verbose_name = 'add_project'
+        verbose_name_plural = 'add_projects'
 
 class ProjectUpdate(models.Model):
 
@@ -82,23 +82,7 @@ class ProjectUpdate(models.Model):
 
 
 
-#=========== Project Manager ===========.
-class ProjectManager(models.Model):
-    technical_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    financial_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    security_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    language_verification = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    corporate_reference_readlines = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    education = models.CharField(max_length= 20, choices= MANAGER_CHOICE)
-    
-    # ============== Additional information section ==============.
-    technical_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    financial_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    educational_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    security_evaluation_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    corporate_reference_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    candidate_reference_check = models.CharField(max_length= 20, choices=MANAGER_CHOICE)
-    miscellaneous_check =  models.CharField(max_length= 20, choices=MANAGER_CHOICE)
+
 
 #======================== Files Model ==============.
 class Files(models.Model):

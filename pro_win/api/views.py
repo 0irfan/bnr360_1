@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import (AddProjectSerializer, UpdateInformationSerializer, DashboardSerializer)
+from .serializers import (AddProjectSerializer, UpdateInformationSerializer, ProjectDashboardSerializer, ProjectManagerSerializer)
 from .models import (AddProject, ProjectUpdate)
 from rest_framework import generics
 from .permissions import IsAdmin
@@ -15,17 +15,21 @@ class AddProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AddProjectSerializer
 
 
-class UpdateList(generics.ListCreateAPIView):
+class ProjectUpdateList(generics.ListCreateAPIView):
     queryset = ProjectUpdate.objects.all()
     serializer_class = UpdateInformationSerializer
 
-class RetrieveUpdate(generics.RetrieveUpdateDestroyAPIView):
+class ProjectInfoUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProjectUpdate.objects.all()
     serializer_class = UpdateInformationSerializer
 
-class DashboardRetrieve(generics.RetrieveUpdateAPIView):
+class ProjectManager(generics.RetrieveAPIView):
+    queryset = ProjectUpdate.objects.all()
+    serializer_class = ProjectManagerSerializer
+
+class DashboardRetrieve(generics.RetrieveAPIView):
     queryset = AddProject.objects.all()
-    serializer_class = DashboardSerializer
+    serializer_class = ProjectDashboardSerializer
 
 
 
